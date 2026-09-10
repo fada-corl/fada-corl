@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -16,6 +17,14 @@ const crossOriginIsolation = {
 export default defineConfig({
   base: '/',
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      input: {
+        main: fileURLToPath(new URL('./index.html', import.meta.url)),
+        timeline: fileURLToPath(new URL('./timeline_v2.html', import.meta.url)),
+      },
+    },
+  },
   server: { headers: crossOriginIsolation },
   preview: { headers: crossOriginIsolation },
   // .onnx policy models are loaded at runtime from public/ via fetch — treat any

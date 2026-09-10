@@ -6,7 +6,7 @@ interface NavItem {
   label: string
 }
 
-const ITEMS: NavItem[] = [
+const DEFAULT_ITEMS: NavItem[] = [
   { id: 'overview', label: 'Overview' },
   { id: 'abstract', label: 'Abstract' },
   { id: 'method', label: 'Method' },
@@ -16,20 +16,26 @@ const ITEMS: NavItem[] = [
   { id: 'citation', label: 'Cite' },
 ]
 
+interface Props {
+  items?: NavItem[]
+  brandHref?: string
+  brandLabel?: string
+}
+
 /**
  * Sticky in-page nav. Appears after scrolling past the hero, highlights the
  * section currently in view, and smooth-scrolls on click.
  */
-export function Nav() {
+export function Nav({ items: ITEMS = DEFAULT_ITEMS, brandHref = '#top', brandLabel = 'FADA' }: Props = {}) {
   const [visible, setVisible] = useState(false)
-  const [active, setActive] = useState<string>('abstract')
+  const [active, setActive] = useState<string>(ITEMS[0]?.id ?? '')
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > window.innerHeight * 0.7)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [ITEMS])
 
   useEffect(() => {
     if (typeof IntersectionObserver === 'undefined') return
@@ -50,8 +56,8 @@ export function Nav() {
 
   return (
     <nav className={`pagenav ${visible ? 'is-visible' : ''}`} aria-label="Section navigation">
-      <a href="#top" className="pagenav__brand">
-        FADA
+      <a href={brandHref} className="pagenav__brand">
+        {brandLabel}
       </a>
       <ul className="pagenav__list">
         {ITEMS.map((it) => (

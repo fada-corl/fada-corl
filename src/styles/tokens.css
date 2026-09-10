@@ -8,6 +8,7 @@
 :root {
   /* ---- Brand ---- */
   --brand-red: #c41230;
+  --cmu-red: var(--brand-red);
 
   /* ---- Light (editorial) surface ---- */
   --paper: #f7f4ef; /* warm off-white page background */

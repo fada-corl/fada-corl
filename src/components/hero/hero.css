@@ -92,6 +92,23 @@
   margin-bottom: var(--sp-6);
 }
 
+.hero__timeline-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: var(--sp-7);
+  padding: 0.75rem 1.2rem;
+  border: 1px solid var(--rule-dark-strong);
+  border-radius: 999px;
+  background: var(--chalk);
+  color: var(--void);
+  font-weight: 600;
+}
+.hero__timeline-link:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
 /* ---- Hero stats ---- */
 .hero__stats {
   display: grid;

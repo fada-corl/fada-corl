@@ -1,4 +1,5 @@
 import { SITE, HERO_STATS } from '../../data/content'
+import { assetUrl } from '../../lib/assetUrl'
 import { Container } from '../layout/Container'
 import './hero.css'
 
@@ -32,6 +33,10 @@ export function Hero() {
         </h1>
 
         <p className="hero__tagline">{SITE.tagline}</p>
+
+        <a className="hero__timeline-link" href={assetUrl('timeline_v2.html')}>
+          Read the research timeline <span aria-hidden="true">→</span>
+        </a>
 
         <dl className="hero__stats">
           {HERO_STATS.map((s) => (
